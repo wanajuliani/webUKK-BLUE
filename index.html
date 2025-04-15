@@ -1,0 +1,562 @@
+<!-- led, maxHumid maxTamp -->
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+    
+    <!-- Custom stylesheet -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Favicon -->
+    <link type="image/png" sizes="96x96" rel="icon" href="logo.png">
+    <title>UKK WANA JULIANI</title>
+  </head>
+  <body data-spy="scroll" data-target="#mainNav" data-offset="70">
+
+    <!-- Navigasi -->
+    <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+      <div class="container">
+        <!-- Nama brand -->
+        <a class="navbar-brand font-weight-bold text-white" href="#jumbotron">UKK SMK AL-FALAH</a>
+
+        <!-- Tombol toogle untuk tampilan mobile -->
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Tautan navigasi -->
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="nav navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link text-white" href="#led">LED</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-white" href="#dht">DHT</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-white" href="#ultrasonic">Ultrasonic</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Jumboton section -->
+    <div class="jumbotron " id="jumbotron">
+      <div class="container-jumbotron" >
+        <!-- Judul utama -->
+        <div class="display-4">
+          <span class="font-weight-bold" style="font-family: 'Montserrat', serif;">
+            Environmental Monitoring
+          </span>
+          and
+          <div class="font-weight-bold" style="font-family: 'Montserrat', serif;">
+            LED Controller
+          </div>
+        </div>
+        <hr class="my-4">
+        <p class="lead">Wana Juliani XII-K3</p>
+      </div>
+    </div>
+
+    <div class="wave-container">
+      <div class="wave">
+        <svg viewBox="0 0 1440 320" preserveAspectRatio="none">
+          <path fill="#1976D2" 
+            d="M0,192L40,202.7C80,213,160,235,240,234.7C320,235,400,213,480,186.7C560,160,640,128,720,122.7C800,117,880,139,960,170.7C1040,203,1120,245,1200,240C1280,235,1360,181,1400,154.7L1440,128L1440,0L1400,0C1360,0,1280,0,1200,0C1120,0,1040,0,960,0C880,0,800,0,720,0C640,0,560,0,480,0C400,0,320,0,240,0C160,0,80,0,40,0L0,0Z">
+          </path>
+        </svg>
+      </div>
+    </div>  
+
+    <!-- Section LED -->
+    <section id="led" style="padding-top: 100px;padding-bottom: 170px;">
+      <div class="container-led">
+        <div class="header">
+            <p class="title-card">LED Control System</p>
+            <p class="description-card">Monitor and control your LED states</p>
+        </div>
+        <div class="led-controls">
+
+          <!-- LED 1 -->
+          <div class="led-card">
+            <div class="led-header">
+                <span class="led-title">LED 1</span>
+                <i class="fas fa-lightbulb" style="color: #e74c3c;"></i>
+            </div>
+            <div class="led-status" id="led1-status"><i class="fa-solid fa-lightbulb"></i></div>
+            <div class="checkbox-wrapper">
+                <input type="checkbox" id="led1-control" onclick="toggleLED()">
+                <label for="led1-control">
+                    <div class="custom-checkbox"></div>
+                    <span class="status-text">OFF</span>
+                </label>
+            </div>
+          </div>
+      
+          <!-- LED 2 -->
+          <div class="led-card">
+            <div class="led-header">
+              <span class="led-title">LED 2</span>
+              <!-- <i class="fas fa-lightbulb" style="color: #2e58cc;"></i> -->
+              <i class="fas fa-lightbulb" style="color: #1E90FF;"></i>
+            </div>
+            <div class="led-status" id="led2-status"><i class="fa-solid fa-lightbulb"></i></div>
+            <div class="checkbox-wrapper">
+              <input type="checkbox" id="led2-control" onclick="toggleLED()">
+              <label for="led2-control">
+                  <div class="custom-checkbox"></div>
+                  <span class="status-text">OFF</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- LED 3 -->
+          <div class="led-card">
+            <div class="led-header">
+              <span class="led-title">LED 3</span>
+              <i class="fas fa-lightbulb" style="color: #2ecc71;"></i>
+              <!-- <i class="fas fa-lightbulb" style="color: #3498db;"></i> -->
+            </div>
+            <div class="led-status" id="led3-status"><i class="fa-solid fa-lightbulb"></i></div>
+            <div class="checkbox-wrapper">
+              <input type="checkbox" id="led3-control" onclick="toggleLED()">
+              <label for="led3-control">
+                  <div class="custom-checkbox"></div>
+                  <span class="status-text">OFF</span>
+              </label>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Section sensor DHT11 -->
+    <section id="dht" style="padding-top: 80px;padding-bottom: 80px">
+      <div class="container-dht">
+        <div class="header">
+          <p class="title-card">DHT11 Monitor System</p>
+          <p class="description-card">Monitor Sensor DHT11 Temperature and Humidity</p>
+        </div>
+        <div class="cards-container">
+          <!-- Card temperature -->
+            <div class="card temperature-card">
+                <div class="card-title">
+                  <i class="fas fa-temperature-high"></i>
+                  Temperature
+                </div>
+                <center>
+                <div class="card-value">
+                    <div class="progress-container">
+                      <svg class="progress-ring" viewBox="0 0 100 100">
+                        <circle class="progress-circle" 
+                                cx="50" 
+                                cy="50" 
+                                r="40"/>
+                        <circle class="progress-value-temperature"
+                                cx="50" 
+                                cy="50" 
+                                r="40"/>
+                      </svg>
+                      <div class="progress-text">
+                        <p class="percentage" id="temperaturPercentage"><span>0</span>C</p>
+                      </div>
+                    </div>
+              </div>
+            </center>
+            </div>
+
+            <!-- Card weather -->
+            <div class="card weather-card">
+                <div class="card-title">
+                  <i class="fas fa-light fa-cloud"></i>
+                  Weather
+                </div>
+
+                <div class="card-value condition-value">
+                  <div class="weatherIcon" id="weatherIcon">
+                      <i class="wi wi-refresh"></i>
+                  </div>
+                  <div class="description">
+                    <div class="weatherCondition" id="conditionID"> Kondisi Error</div>
+                  </div>
+                </div>
+            </div>
+
+            <!-- Card humidity -->
+            <div class="card humidity-card">
+              <div class="card-title">
+                  <i class="fas fa-light fa-droplet"></i>
+                  Humidity
+              </div>
+              <center>
+                <div class="card-value">
+                  <div class="progress-container">
+                    <svg class="progress-ring" viewBox="0 0 100 100">
+                      <circle class="progress-circle" 
+                              cx="50" 
+                              cy="50" 
+                              r="40"/>
+                      <circle class="progress-value-humidity" 
+                              cx="50" 
+                              cy="50" 
+                              r="40"/>
+                    </svg>
+                    <div class="progress-text">
+                      <p class="percentage" id="humidityPercentage"><span>0</span>%</p>
+                    </div>
+                  </div>
+                </div>
+              </center>
+            </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Section sensor ultrasonic -->
+    <section id="ultrasonic" style="padding-top: 105px;padding-bottom: 80px;">
+      <div class="container-jarak">
+        <div class="jarak-header">
+          <p class="title-card">Ultrasonic Monitor System</p>
+          <p class="description-card">Monitor Sensor Ultrasonic</p>
+        </div>
+        <div class="bar-label">distance: <span id="distance" style="font-family: 'Space Grotesk', sans-serif;">0</span> cm</div>
+        <div class="progress-barJarak">
+            <div class="progressJarak" id="progress"></div>
+        </div>
+    </section>
+        
+    <footer class="text-light pt-4 pb-3 mt-auto" style="background-color: #0D47A1  ;">
+      <div class="container">
+        <div class="row">
+    
+          <!-- Kolom 1: Tentang -->
+          <div class="col-md-6 mb-3">
+            <h5 class="text-uppercase">Environmental Monitoring and LED Controller</h5>
+            <p class="small mb-0">
+              Website monitoring LED, temperature, humidity and proximity sensors</p>
+          </div>
+    
+          <!-- Kolom 2: Navigasi -->
+          <div class="col-md-3 mb-3">
+          </div>
+    
+          <!-- Kolom 3: Kontak atau Sosial Media -->
+          <div class="col-md-3 mb-3">
+            <h6 class="text-uppercase">Contact</h6>
+            <ul class="list-unstyled">
+              <li>Email: <a href="mailto:wanajuli11@gmail.com" class="text-light">wanajuli11@gmail.com</a></li>
+              <li>Instagram: <a href="https://www.instagram.com/waanzzn?igsh=MXR2OWN2c3BwNXB6Nw==" class="text-light">@waanzzn</a></li>
+            </ul>
+          </div>
+        </div>
+    
+        <hr class="bg-light">
+    
+        <!-- Copyright -->
+        <div class="text-center small">
+          &copy; 2025 Monitoring Sensor. All rights reserved.
+        </div>
+      </div>
+    </footer>
+        
+        
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-database.js"></script>
+
+    <script type="module"> //fungsi module ini supaya di private
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js";
+      import {getDatabase, ref, onValue, set} from "https://www.gstatic.com/firebasejs/11.2.0/firebase-database.js";
+      // TODO: Add SDKs for Firebase products that you want to use
+      // https://firebase.google.com/docs/web/setup#available-libraries
+
+      //config firebase
+      const firebaseConfig = {
+        apiKey: "AIzaSyBcy98GlumEh8K15lI1Htn7P1g66vfNnA4",
+        authDomain: "fir-arduinoled-f0911.firebaseapp.com",
+        databaseURL: "https://fir-arduinoled-f0911-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "fir-arduinoled-f0911",
+        storageBucket: "fir-arduinoled-f0911.firebasestorage.app",
+        messagingSenderId: "7230673148",
+        appId: "1:7230673148:web:3e41da3a7c8e00aa094779"
+      };
+
+      //inisialisasi firebase
+      const app = initializeApp(firebaseConfig);
+      const db = getDatabase(app);
+
+      // Membuat Referensi ke jalur database
+      const ledRef = ref(db, 'aktuator'); // Data kontrol LED
+      const dhtRef = ref(db, 'Suhu');     // Data suhu dan kelembaban
+      const usRef = ref(db, 'Sensor');    // Data sensor ultrasonic
+
+      //fungsi untuk mengambil data led di firebase
+      onValue(ledRef, (snapshot) => {
+        const led = snapshot.val();
+        if (snapshot.exists()){
+          // Memperbarui status checkbox berdasarkan nilai database
+          Object.keys(led).forEach((key, index)=>{
+            document.getElementById(`led${index+1}-control`).checked = led[key] === 1;
+
+            for (let i = 1; i <= 3; i++) {
+              const checkbox = document.getElementById(`led${i}-control`);
+              checkbox.addEventListener('change', () => updateLED(i));
+              updateLED(i); // Initialize state
+            }
+
+          });
+        }console.log('status LED berubah', Object.values(led));
+      });
+
+      // Memperbarui indikator visual LED berdasarkan status checkbox
+      function updateLED(ledNumber) {
+        const checkbox = document.getElementById(`led${ledNumber}-control`);
+        const status = document.getElementById(`led${ledNumber}-status`);
+        const statusText = checkbox.nextElementSibling.querySelector('.status-text');
+        
+        if(checkbox.checked){
+          // Mengatur wana berdasarkan LED mana yang aktif
+          if (checkbox.id === "led1-control"){
+            status.style.color = "#FF5252";
+          } else if (checkbox.id === "led2-control"){
+            status.style.color = "#1E90FF";
+          } else if (checkbox.id === "led3-control") {
+            status.style.color = "#4CAF50";
+          }
+          statusText.textContent = 'ON';
+        } else {
+          status.style.color = "#A0A0A0"; //abu-abu ketika mati
+          statusText.textContent = 'OFF';
+        }
+
+      }
+
+      //window fungsinya mengubah yang tadinya private menjadi public
+      // Fungsi unntuk memperbarui status LED di Firebase ketika pengguna mengubah checkbox
+      window.toggleLED = () => {
+        // Dapatkan status saat ini dari semua LED(1 untuk nyala, 0 untuk mati)
+        const ledState = [1, 2, 3].map(i => document.getElementById(`led${i}-control`).checked ? 1 : 0);
+        
+        // Memperbarui Firebase dengan status LED baru
+        set(ledRef, {
+          led1: ledState[0],
+          led2: ledState[1],
+          led3: ledState[2]
+        }).then(() => console.log("LED state updated in Firebase"))
+          .catch(() => console.log("Failed to update LED state"));
+      }
+
+    // PEMROSESAN DATA SENSOR DHT11
+
+      //variabel untuk menyimpan data nilai sensor DHT11
+      let humidity; //nilai awal kelembapan
+      let temperature;   //nilai awal suhu
+
+      //Mendengarkan perubahan data DHT11 di Firebase
+      onValue(dhtRef, (snapshot) => {
+        if (snapshot.exists()){
+          //ketika data tidak kosong maka perintah ini dijalankan
+          const data = snapshot.val();
+          let timestamp =  new Date().toLocaleTimeString();
+          temperature = Math.round(data.t);
+          humidity = Math.round(data.h);
+          console.log("Temperature update", temperature);
+          console.log("Kelembapan update", humidity);
+
+          updateWeatherCondition(temperature, humidity);
+          updateWeather(temperature, humidity);
+        } else {
+          //ketika data kosong atau 0 maka data ini dijalankan
+          console.log("Data DHT tidak ada");}
+      }, (error) => {
+        //jika error data ini yang dijalankan
+        console.log("error baca data DHT");
+      });
+
+      // suhu 0-19
+        // kelembaban 81-100 = HUJAN
+        // kelembaban 60-80  = BERAWAN
+        // kelembaban 0-59 = DIGIN
+      // suhu 20-29
+        // kelembaban 81-100 = HUJAN RINGAN
+        // kelembaban 60-80  = CERAH BERAWAN 
+        // kelembaban 0-59   = CERAH
+      //suhu 30-100
+        // kelembaban 81-100 = GERAH/BERAWAN
+        // kelembaban 60-80  = CERAH BERAWAN
+        // kelembaban 0-59   = PANAS TERIK
+      
+      //fungsi untuk menentukan kondisi cuaca berdasarkan nilai suhu dan kelembaban
+      function updateWeatherCondition(temperature, humidity){
+          const condition  = document.getElementById("conditionID");
+          const weathericon = document.getElementById("weatherIcon");
+          let icon = "wi wi-cloud"; 
+
+          if(isNaN(temperature) || isNaN(humidity)) {
+            condition.textContent = "kondisi error";
+            icon = "wi wi-refresh";
+          } else {
+          // SUHU DINGIN (0-19°C)
+          if (temperature < 20) { 
+              if (humidity > 80) {
+                  condition.textContent = "Hujan";
+                  icon = "wi wi-rain";
+              } else if (humidity >= 60) {
+                  condition.textContent = "Berawan";
+                  icon = "	wi wi-cloudy";
+              } else{
+                  condition.textContent = "Dingin";
+                  icon = "wi wi-snowflake-cold";
+              }
+            // SUHU SEDANG (20-29°C)
+          } else if (temperature <= 29) {
+              if (humidity > 80) {
+                  condition.textContent = "Hujan Ringan";
+                  icon = "wi wi-day-showers";
+              } else if (humidity >= 60) {
+                  condition.textContent = "Cerah Berawan";
+                  icon = "wi wi-day-cloudy";
+              } else {
+                  condition.textContent = "Cerah";
+                  icon = "	wi wi-day-sunny";
+              }
+            // SUHU PANAS (30°C+)
+          } else {
+              if (humidity > 80) {
+                  condition.textContent = "Gerah/Berawan";
+                  icon = "wi wi-hot";
+              } else if (humidity >= 60) {
+                  condition.textContent = "Cerah Berawan";
+                  icon = "wi wi-day-cloudy-high";
+              } else {
+                  condition.textContent = "Panas Terik";
+                  icon = "wi wi-day-sunny-overcast";
+              }
+          }
+        }
+
+        // Memperbarui icon cuaca
+        weathericon.innerHTML = `<i class="${icon}"></i>`;
+      }
+
+
+      //Perbarui indikator progres lingkaran untuk suhu dan kelembaban
+      function updateWeather (tempData, humidData) {
+          const temperatureElement = document.getElementById("temperaturPercentage");
+          const humidElement = document.getElementById("humidityPercentage");
+          const iconElement = document.getElementById("weatherIcon");
+          const circumference = 2 * Math.PI * 40; // HItung keliling lingkaran
+
+          // Indikator temperatur
+          const maxTemp = 100;
+          const limitedTemp = Math.min(tempData, maxTemp);
+          
+          const circleTemp = document.querySelector('.progress-value-temperature');
+          const offsetTemp = circumference * (1 - limitedTemp / 100);
+          circleTemp.style.strokeDasharray = circumference;
+          
+          if(isNaN(offsetTemp)){
+            circleTemp.style.strokeDashoffset = circumference;
+          }else{
+            circleTemp.style.strokeDashoffset = offsetTemp;
+          }
+
+          // Atur wana indikator temperatur berdasarkan nilai
+          if (tempData < 15 ){
+            circleTemp.style.stroke = "#4FC3F7"//Dingin : biru
+          }else if(tempData >= 15 && tempData <= 25){
+            circleTemp.style.stroke = "#81C784"//Sejuk  : hijau
+          }else if(tempData >= 26 && tempData <= 33){
+            circleTemp.style.stroke = "#FFD54F"//Hangat : kuning keemasan
+          }else if(tempData >= 34 && tempData <= 37){
+            circleTemp.style.stroke = "#FFB74D"// Panas : orange
+          }else if(tempData >= 38){
+            circleTemp.style.stroke = "#E57373"// Panas : merah
+          }
+
+          // indikator humidity
+          const maxHumid = 100;
+          const limitedHumid = Math.min(humidData, maxHumid);
+
+          const circleHumid = document.querySelector('.progress-value-humidity');
+          const offsetHumid = circumference * (1 - limitedHumid / 100);
+          circleHumid.style.strokeDasharray = circumference;
+
+          if(isNaN(offsetHumid)){
+            circleHumid.style.strokeDashoffset = circumference;
+          } else {
+            circleHumid.style.strokeDashoffset = offsetHumid;
+          }
+
+          // Atur warna indikator kelembaban berdasarkan nilai
+          if (humidData <= 29 ){
+            circleHumid.style.stroke = "#F94144"//sangat kering : red
+          }else if(humidData <= 39){
+            circleHumid.style.stroke = "#F3722C"//kering        : orange
+          }else if(humidData <= 60){
+            circleHumid.style.stroke = "#90BE6D"//ideal/nyaman  : hijau
+          }else if(humidData <= 70){
+            circleHumid.style.stroke = "#F9C74F"// lembab       : kuning
+          }else if (humidData >=71){
+            circleHumid.style.stroke = "#277DA1"//sangat lembab : biru
+          }
+
+          // Perbarui nilai teks tampilan temperature
+          temperatureElement.innerHTML = `<span>${tempData}</span>&deg;C`;
+
+          // Perbarui nilai teks tampilan humidity
+          humidElement.textContent = `${humidData}%`;
+      }
+
+  // PROSES SENSOR ULTRASONIC
+
+      // Mendengarkan perubahan data sensor ultrasonic di Firebase
+      onValue(usRef, (snapshot) => {
+        if (snapshot.exists()){
+          const data = snapshot.val();
+          let nilaiJarak = Math.round(data.jarak);
+          console.log("jarak berubah", nilaiJarak);
+          updateDistance(nilaiJarak);
+        } else {
+          console.log("data ultrasonic tidak ada");
+        }
+      });
+
+      // Perbarui tampilan jarak dan progress bar
+      function updateDistance(value) {
+          if(isNaN(value)) {
+            document.getElementById('distance').textContent = NaN;
+            document.getElementById('progress').style.width = 0 + '%';
+          }else{
+            // Perbarui teks
+            document.getElementById('distance').textContent = value;
+
+            // Batasi nilai antara 0 dan 100 untuk tampilan pogresbar
+            const safeValue = Math.max(0, Math.min(100, value));
+            // Perbarui lebar progres bar
+            document.getElementById('progress').style.width = safeValue + '%';
+        }
+      }
+    </script> 
+  </body>
+</html>
